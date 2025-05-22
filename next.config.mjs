@@ -1,4 +1,5 @@
-/** @type {import('next').NextConfig} */
+// next.config.mjs
+
 const nextConfig = {
   output: 'export',
   eslint: {
@@ -12,4 +13,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig
