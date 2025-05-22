@@ -3,7 +3,6 @@
 import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import AnimatedPopup from "./animated-popup"
-import Image from "next/image"
 
 interface SkillCardProps {
   skill: string
@@ -12,7 +11,6 @@ interface SkillCardProps {
   projects?: string[]
   yearsExperience?: number
   color?: string
-  icon?: string
 }
 
 export default function SkillCard({
@@ -22,7 +20,6 @@ export default function SkillCard({
   projects = ["Project 1", "Project 2", "Project 3"],
   yearsExperience = 2,
   color = "#a855f7", // Default purple color
-  icon,
 }: SkillCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
@@ -45,23 +42,7 @@ export default function SkillCard({
       >
         <div className="p-5">
           <div className="flex justify-between items-center mb-3">
-            <div className="flex items-center">
-              {icon && (
-                <div
-                  className="w-10 h-10 rounded-md mr-3 flex items-center justify-center"
-                  style={{ backgroundColor: `${color}20` }}
-                >
-                  <Image
-                    src={icon || "/placeholder.svg"}
-                    alt={skill}
-                    width={24}
-                    height={24}
-                    className="object-contain"
-                  />
-                </div>
-              )}
-              <h3 className="font-bold text-lg">{skill}</h3>
-            </div>
+            <h3 className="font-bold text-lg">{skill}</h3>
             <span className="text-lg font-bold" style={{ color }}>
               {percentage}%
             </span>
@@ -101,17 +82,6 @@ export default function SkillCard({
 
       <AnimatedPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} title={`${skill} - ${percentage}%`}>
         <div className="space-y-4">
-          <div className="flex items-center justify-center mb-6">
-            {icon && (
-              <div
-                className="w-16 h-16 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: `${color}20` }}
-              >
-                <Image src={icon || "/placeholder.svg"} alt={skill} width={40} height={40} className="object-contain" />
-              </div>
-            )}
-          </div>
-
           <div className="w-full bg-white/5 rounded-lg p-4 border border-white/10 mb-6">
             <div className="flex justify-between items-center mb-2">
               <span className="font-medium">Proficiency</span>

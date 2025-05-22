@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useMemo, useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
@@ -12,6 +12,15 @@ interface HeroSectionProps {
 
 export default function HeroSection({ name, nickname }: HeroSectionProps) {
   const dotRef = useRef<HTMLDivElement>(null)
+
+  const dots = useMemo(() => {
+    return Array.from({ length: 200 }).map((_, i) => ({
+      id: i,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      opacity: Math.random() * 0.5 + 0.25,
+    }))
+  }, [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -36,14 +45,14 @@ export default function HeroSection({ name, nickname }: HeroSectionProps) {
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Dot pattern background */}
       <div ref={dotRef} className="absolute inset-0 z-0">
-        {Array.from({ length: 200 }).map((_, i) => (
+        {dots.map((dot) => (
           <div
-            key={i}
+            key={dot.id}
             className="absolute h-1 w-1 rounded-full bg-white/20"
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.5 + 0.25,
+              top: dot.top,
+              left: dot.left,
+              opacity: dot.opacity,
             }}
           />
         ))}
