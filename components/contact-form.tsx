@@ -1,56 +1,27 @@
 "use client"
 
-import React, { useState } from "react"
+import type React from "react"
+
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Send, AlertCircle } from "lucide-react"
+import { Send } from "lucide-react"
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }))
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setError(null)
 
-    try {
-      if (!formData.email.includes("@") || !formData.email.includes(".")) {
-        throw new Error("Please enter a valid email address")
-      }
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      })
-
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || "Something went wrong")
-
-      setIsSubmitted(true)
-      setFormData({ name: "", email: "", message: "" })
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An unknown error occurred")
-    } finally {
-      setIsSubmitting(false)
-    }
+    setIsSubmitting(false)
+    setIsSubmitted(true)
   }
 
   return (
@@ -70,13 +41,6 @@ export default function ContactForm() {
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          {error && (
-            <div className="bg-red-500/10 border border-red-500/50 rounded-md p-3 flex items-start gap-2 text-red-200">
-              <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
-              <p>{error}</p>
-            </div>
-          )}
-
           <div>
             <label htmlFor="name" className="block mb-2 text-sm font-medium">
               Name
@@ -85,8 +49,6 @@ export default function ContactForm() {
               id="name"
               placeholder="Your name"
               required
-              value={formData.name}
-              onChange={handleChange}
               className="bg-white/5 border-white/10 focus:border-purple-500 focus:ring-purple-500"
             />
           </div>
@@ -100,8 +62,6 @@ export default function ContactForm() {
               type="email"
               placeholder="your.email@example.com"
               required
-              value={formData.email}
-              onChange={handleChange}
               className="bg-white/5 border-white/10 focus:border-purple-500 focus:ring-purple-500"
             />
           </div>
@@ -115,8 +75,6 @@ export default function ContactForm() {
               placeholder="Your message here..."
               rows={5}
               required
-              value={formData.message}
-              onChange={handleChange}
               className="bg-white/5 border-white/10 focus:border-purple-500 focus:ring-purple-500"
             />
           </div>
