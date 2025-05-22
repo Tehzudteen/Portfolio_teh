@@ -52,8 +52,8 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <HeroSection name="Phubet Klubchai" />
-
+      <HeroSection  />
+          
       {/* About Section */}
       <section
         id="about"
@@ -531,19 +531,19 @@ export default function Home() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-purple-400" />
-                <span>hello@example.com</span>
+                <span>luckyteh0083@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <Linkedin className="h-5 w-5 text-purple-400" />
-                <span>linkedin.com/in/phubet-klubchai</span>
+                <span>www.linkedin.com/in/phubet-klubchai</span>
               </div>
               <div className="flex items-center gap-3">
                 <Github className="h-5 w-5 text-purple-400" />
-                <span>github.com/phubet</span>
+                <span>https://github.com/Tehzudteen</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="h-5 w-5 text-purple-400" />
-                <span>Bangkok, Thailand</span>
+                <span>Prachinburi, Thailand</span>
               </div>
             </div>
           </div>

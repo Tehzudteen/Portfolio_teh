@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
 interface HeroSectionProps {
-  name: string
+  name ?: string
 }
 
 export default function HeroSection({ name }: HeroSectionProps) {
@@ -62,8 +62,8 @@ export default function HeroSection({ name }: HeroSectionProps) {
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="block">Hi, I'm {name}</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Teh (เท่)</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Hi, I'm  Phubet Klubchai</span>
+            <span className="block "> Software Engineer</span>
           </h1>
         </motion.div>
 
