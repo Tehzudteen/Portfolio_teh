@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
+  output: 'export', // forces static output
+  images: { unoptimized: true }, // if you're using Next < 13 image optimization
 }
 
-export default nextConfig
+module.exports = nextConfig
