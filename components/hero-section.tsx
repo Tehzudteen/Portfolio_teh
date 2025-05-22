@@ -1,34 +1,35 @@
 "use client"
 
-import { useEffect, useMemo, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
 interface HeroSectionProps {
   name: string
-  nickname: string
 }
 
-export default function HeroSection({ name, nickname }: HeroSectionProps) {
+export default function HeroSection({ name }: HeroSectionProps) {
   const dotRef = useRef<HTMLDivElement>(null)
+  const [dots, setDots] = useState<Array<{ top: string; left: string; opacity: number }>>([])
 
-  const dots = useMemo(() => {
-    return Array.from({ length: 200 }).map((_, i) => ({
-      id: i,
+  // Generate dot positions only once on client side
+  useEffect(() => {
+    const newDots = Array.from({ length: 200 }).map(() => ({
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
       opacity: Math.random() * 0.5 + 0.25,
     }))
+    setDots(newDots)
   }, [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!dotRef.current) return
 
-      const dots = Array.from(dotRef.current.children) as HTMLElement[]
+      const dotElements = Array.from(dotRef.current.children) as HTMLElement[]
 
-      dots.forEach((dot, index) => {
+      dotElements.forEach((dot, index) => {
         const speed = 0.1 - index * 0.01
         const x = (window.innerWidth / 2 - e.clientX) * speed
         const y = (window.innerHeight / 2 - e.clientY) * speed
@@ -39,15 +40,15 @@ export default function HeroSection({ name, nickname }: HeroSectionProps) {
 
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+  }, [dots.length]) // Only re-run if dots array length changes
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Dot pattern background */}
       <div ref={dotRef} className="absolute inset-0 z-0">
-        {dots.map((dot) => (
+        {dots.map((dot, i) => (
           <div
-            key={dot.id}
+            key={i}
             className="absolute h-1 w-1 rounded-full bg-white/20"
             style={{
               top: dot.top,
@@ -62,9 +63,7 @@ export default function HeroSection({ name, nickname }: HeroSectionProps) {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
             <span className="block">Hi, I'm {name}</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-              {nickname}
-            </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Teh (เท่)</span>
           </h1>
         </motion.div>
 
