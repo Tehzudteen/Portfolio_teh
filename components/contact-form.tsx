@@ -2,109 +2,241 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Send } from "lucide-react"
+import { useRef, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import emailjs from "@emailjs/browser"
+import { Send, CheckCircle, Loader2 } from "lucide-react"
 
 export default function ContactForm() {
+  const form = useRef<HTMLFormElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        form.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      )
+      setIsSubmitted(true)
+      form.current?.reset()
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      // Reset success state after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false)
+      }, 5000)
+    } catch (error) {
+      console.error("Failed to send message:", error)
+      setError("Failed to send message. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  }
+
+  const successVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        type: "spring",
+        stiffness: 200,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.3 },
+    },
   }
 
   return (
-    <div className="bg-white/5 rounded-lg p-6 border border-white/10">
-      {isSubmitted ? (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center py-8">
-          <div className="w-16 h-16 bg-green-500/20 rounded-full grid place-items-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
-          <p className="text-gray-300">Thank you for reaching out. I'll get back to you soon.</p>
-          <Button className="mt-6 bg-purple-600 hover:bg-purple-700" onClick={() => setIsSubmitted(false)}>
-            Send Another Message
-          </Button>
-        </motion.div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block mb-2 text-sm font-medium">
-              Name
-            </label>
-            <Input
-              id="name"
-              placeholder="Your name"
-              required
-              className="bg-white/5 border-white/10 focus:border-purple-500 focus:ring-purple-500"
-            />
-          </div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="relative overflow-hidden bg-transparent backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-2xl"
+    >
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
 
-          <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium">
-              Email
-            </label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="your.email@example.com"
-              required
-              className="bg-white/5 border-white/10 focus:border-purple-500 focus:ring-purple-500"
-            />
-          </div>
+      <AnimatePresence mode="wait">
+        {isSubmitted ? (
+          <motion.div
+            key="success"
+            variants={successVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="text-center py-8"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              className="inline-flex items-center justify-center w-16 h-16 bg-green-500/10 border border-green-500/30 rounded-full mb-4 backdrop-blur-sm"
+            >
+              <CheckCircle className="w-8 h-8 text-green-400" />
+            </motion.div>
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-xl font-semibold text-white mb-2"
+            >
+              Message Sent Successfully!
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-white/80"
+            >
+              Thank you for reaching out. I'll get back to you soon.
+            </motion.p>
+          </motion.div>
+        ) : (
+          <motion.form key="form" ref={form} onSubmit={sendEmail} variants={containerVariants} className="space-y-6">
+            <motion.div variants={itemVariants}>
+              <label htmlFor="name" className="block text-sm font-medium text-white/90 mb-2">
+                Name
+              </label>
+              <motion.input
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Your name"
+                className="w-full p-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300 backdrop-blur-sm"
+              />
+            </motion.div>
 
-          <div>
-            <label htmlFor="message" className="block mb-2 text-sm font-medium">
-              Message
-            </label>
-            <Textarea
-              id="message"
-              placeholder="Your message here..."
-              rows={5}
-              required
-              className="bg-white/5 border-white/10 focus:border-purple-500 focus:ring-purple-500"
-            />
-          </div>
+            <motion.div variants={itemVariants}>
+              <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-2">
+                Email
+              </label>
+              <motion.input
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="your@email.com"
+                className="w-full p-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300 backdrop-blur-sm"
+              />
+            </motion.div>
 
-          <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <span className="flex items-center">
-                <svg
-                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
+            <motion.div variants={itemVariants}>
+              <label htmlFor="message" className="block text-sm font-medium text-white/90 mb-2">
+                Message
+              </label>
+              <motion.textarea
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                id="message"
+                name="message"
+                rows={5}
+                required
+                placeholder="Your message..."
+                className="w-full p-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300 resize-none backdrop-blur-sm"
+              />
+            </motion.div>
+
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-200 text-sm backdrop-blur-sm"
                 >
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                Sending...
-              </span>
-            ) : (
-              <span className="flex items-center">
-                Send Message <Send className="ml-2 h-4 w-4" />
-              </span>
-            )}
-          </Button>
-        </form>
-      )}
-    </div>
+                  {error}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <motion.div variants={itemVariants}>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full relative overflow-hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-slate-600 disabled:to-slate-700 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-purple-500/25 disabled:cursor-not-allowed group"
+              >
+                <AnimatePresence mode="wait">
+                  {isSubmitting ? (
+                    <motion.div
+                      key="loading"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending...
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="send"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      Send Message
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Button shine effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
+                  animate={{
+                    translateX: isSubmitting ? 0 : "200%",
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.button>
+            </motion.div>
+          </motion.form>
+        )}
+      </AnimatePresence>
+    </motion.div>
   )
 }
