@@ -90,39 +90,6 @@ export default function HeroSection({ name }: HeroSectionProps) {
         </motion.div>
       </div>
 
-      {/* Animated bars */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10">
-        <motion.div
-          className="h-2 w-64 bg-purple-600 rounded-full mb-3"
-          initial={{ width: 0, opacity: 0 }}
-          animate={{ width: 250, opacity: 1 }}
-          transition={{
-            delay: 1,
-            duration: 0.8,
-            ease: "easeOut",
-          }}
-        />
-        <motion.div
-          className="h-2 w-48 bg-purple-600 rounded-full mb-3"
-          initial={{ width: 0, opacity: 0 }}
-          animate={{ width: 180, opacity: 1 }}
-          transition={{
-            delay: 1.2,
-            duration: 0.8,
-            ease: "easeOut",
-          }}
-        />
-        <motion.div
-          className="h-2 w-32 bg-purple-600 rounded-full"
-          initial={{ width: 0, opacity: 0 }}
-          animate={{ width: 120, opacity: 1 }}
-          transition={{
-            delay: 1.4,
-            duration: 0.8,
-            ease: "easeOut",
-          }}
-        />
-      </div>
     </section>
   )
 }

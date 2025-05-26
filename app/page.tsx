@@ -48,12 +48,20 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <Button className="bg-purple-600 hover:bg-purple-700">My Resume</Button>
+        <a
+          href="\Phubet_Klubchai.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button className="bg-purple-600 hover:bg-purple-700">
+            My Resume
+          </Button>
+        </a>
       </nav>
 
       {/* Hero Section */}
-      <HeroSection  />
-          
+      <HeroSection />
+
       {/* About Section */}
       <section
         id="about"
@@ -531,7 +539,7 @@ export default function Home() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-purple-400" />
-                <span>luckyteh0083@gmail.com</span>
+                <span>luckyteh7777@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <Linkedin className="h-5 w-5 text-purple-400" />
