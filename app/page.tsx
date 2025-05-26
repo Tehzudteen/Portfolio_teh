@@ -177,7 +177,7 @@ export default function Home() {
                   "University Assignments",
                 ]}
                 yearsExperience={2}
-                description="Proficient in C# development with experience in .NET framework, building backend services and applications."
+                description="Solid understanding of C# with hands-on experience in building .NET backend services and REST APIs, suitable for medium-scale applications."
               />
               <SkillCard
                 skill="Dart"
@@ -189,7 +189,7 @@ export default function Home() {
                   "Cross-platform Applications",
                 ]}
                 yearsExperience={1}
-                description="Expert in Dart programming language, primarily used with Flutter for cross-platform mobile application development."
+                description="Working knowledge of Dart, primarily through building cross-platform apps using Flutter. Able to design UI and handle basic logic efficiently."
               />
               <SkillCard
                 skill="JavaScript"
@@ -213,7 +213,7 @@ export default function Home() {
                   "Type-safe APIs",
                 ]}
                 yearsExperience={2}
-                description="Proficient in TypeScript for building type-safe applications, improving code quality and developer experience."
+                description="Confident using TypeScript to enhance code reliability and maintainability in modern React and backend applications."
               />
               <SkillCard
                 skill="Python"
@@ -225,7 +225,7 @@ export default function Home() {
                   "Machine Learning Models",
                 ]}
                 yearsExperience={2}
-                description="Experienced in Python for data science, machine learning, and backend development with frameworks like Django."
+                description="Strong Python skills used in machine learning, data analysis, and scripting. Comfortable working with libraries like pandas, NumPy, and TensorFlow."
               />
               <SkillCard
                 skill="Rust"
@@ -233,7 +233,7 @@ export default function Home() {
                 color="#FF4500"
                 projects={["Rocket REST APIs", "University Assignments"]}
                 yearsExperience={0.2}
-                description="Growing experience with Rust for systems programming, focusing on memory safety and performance."
+                description="Beginner in Rust with limited project exposure. Exploring systems programming concepts and memory-safe architecture."
               />
               <SkillCard
                 skill="Java"
@@ -245,7 +245,7 @@ export default function Home() {
                   "University Assignments",
                 ]}
                 yearsExperience={2}
-                description="Strong foundation in Java for building backend systems and enterprise-level applications using Spring Boot and core Java concepts."
+                description="Basic knowledge of Java and Spring Boot for backend services. Familiar with OOP principles and RESTful API design in academic settings."
               />
             </div>
           </div>
@@ -345,12 +345,12 @@ export default function Home() {
                 color="#512BD4"
                 projects={["Web APIs", "Practice Projects"]}
                 yearsExperience={2}
-                description="Experienced in .NET framework for building scalable backend services, APIs, and web applications."
+                description="Basic to intermediate experience using the .NET framework for backend APIs and practice projects involving business logic."
               />
               <SkillCard
                 skill="Express.js"
                 percentage={50}
-                color="#000000"
+                color="#d4f44c"
                 projects={[
                   "Tratavel Backend",
                   "RESTful APIs",
@@ -358,7 +358,7 @@ export default function Home() {
                   "Practice Projects",
                 ]}
                 yearsExperience={3}
-                description="Proficient in Express.js for building fast, minimalist web servers and APIs with Node.js."
+                description="Intermediate developer with practical experience building RESTful APIs and auth flows using Express.js and Node.js."
               />
               <SkillCard
                 skill="NestJS"
@@ -366,7 +366,7 @@ export default function Home() {
                 color="#E0234E"
                 projects={["Practice Projects"]}
                 yearsExperience={2}
-                description="Skilled in NestJS for building efficient, reliable, and scalable server-side applications with TypeScript."
+                description="Hands-on experience with NestJS for building modular and scalable server-side applications using TypeScript."
               />
               <SkillCard
                 skill="Django"
@@ -374,7 +374,7 @@ export default function Home() {
                 color="#092E20"
                 projects={["Practice Projects"]}
                 yearsExperience={2}
-                description="Experienced with Django for rapid development of secure and maintainable web applications with Python."
+                description="Beginner-level exposure to Django, suitable for small-scale practice projects involving quick API and admin panel setup."
               />
               <SkillCard
                 skill="MongoDB"
@@ -386,7 +386,7 @@ export default function Home() {
                   "Real-time Applications",
                 ]}
                 yearsExperience={2}
-                description="Proficient in MongoDB for flexible, scalable document database design and implementation."
+                description="Good working knowledge of MongoDB, used for NoSQL data modeling and building real-time or flexible-schema applications."
               />
               <SkillCard
                 skill="MySQL"
@@ -398,7 +398,7 @@ export default function Home() {
                   "Query Optimization",
                 ]}
                 yearsExperience={3}
-                description="Experienced in MySQL for relational database design, optimization, and management."
+                description="Intermediate skills in MySQL for designing relational databases, writing efficient queries, and optimizing schema performance."
               />
             </div>
           </div>
