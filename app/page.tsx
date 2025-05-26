@@ -92,7 +92,7 @@ export default function Home() {
               high-performance software solutions.
             </p>
             <div className="flex gap-4">
-              <Link href="https://github.com" target="_blank">
+              <Link href="https://github.com/Tehzudteen" target="_blank">
                 <Button
                   variant="outline"
                   size="icon"
@@ -101,7 +101,10 @@ export default function Home() {
                   <Github className="h-5 w-5" />
                 </Button>
               </Link>
-              <Link href="https://linkedin.com" target="_blank">
+              <Link
+                href="https://linkedin.com/in/phubet-klubchai"
+                target="_blank"
+              >
                 <Button
                   variant="outline"
                   size="icon"
@@ -110,16 +113,7 @@ export default function Home() {
                   <Linkedin className="h-5 w-5" />
                 </Button>
               </Link>
-              <Link href="https://twitter.com" target="_blank">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full border-white/20 hover:bg-purple-600 hover:border-purple-600"
-                >
-                  <Twitter className="h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="mailto:hello@example.com">
+              <Link href="mailto:luckyteh7777@gmail.com">
                 <Button
                   variant="outline"
                   size="icon"
