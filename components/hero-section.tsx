@@ -1,17 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface HeroSectionProps {
-  name ?: string
+  name?: string;
 }
 
 export default function HeroSection({ name }: HeroSectionProps) {
-  const dotRef = useRef<HTMLDivElement>(null)
-  const [dots, setDots] = useState<Array<{ top: string; left: string; opacity: number }>>([])
+  const dotRef = useRef<HTMLDivElement>(null);
+  const [dots, setDots] = useState<
+    Array<{ top: string; left: string; opacity: number }>
+  >([]);
 
   // Generate dot positions only once on client side
   useEffect(() => {
@@ -19,28 +22,28 @@ export default function HeroSection({ name }: HeroSectionProps) {
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
       opacity: Math.random() * 0.5 + 0.25,
-    }))
-    setDots(newDots)
-  }, [])
+    }));
+    setDots(newDots);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (!dotRef.current) return
+      if (!dotRef.current) return;
 
-      const dotElements = Array.from(dotRef.current.children) as HTMLElement[]
+      const dotElements = Array.from(dotRef.current.children) as HTMLElement[];
 
       dotElements.forEach((dot, index) => {
-        const speed = 0.1 - index * 0.01
-        const x = (window.innerWidth / 2 - e.clientX) * speed
-        const y = (window.innerHeight / 2 - e.clientY) * speed
+        const speed = 0.1 - index * 0.01;
+        const x = (window.innerWidth / 2 - e.clientX) * speed;
+        const y = (window.innerHeight / 2 - e.clientY) * speed;
 
-        dot.style.transform = `translate(${x}px, ${y}px)`
-      })
-    }
+        dot.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    };
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [dots.length]) // Only re-run if dots array length changes
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [dots.length]); // Only re-run if dots array length changes
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -60,9 +63,15 @@ export default function HeroSection({ name }: HeroSectionProps) {
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Hi, I'm  Phubet Klubchai</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
+              Hi, I'm Phubet Klubchai
+            </span>
             <span className="block "> Software Engineer</span>
           </h1>
         </motion.div>
@@ -73,8 +82,9 @@ export default function HeroSection({ name }: HeroSectionProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          Software Engineer & Full-Stack Developer with expertise in multiple programming languages and frameworks.
-          Passionate about building efficient, high-performance software solutions.
+          Software Engineer & Full-Stack Developer with expertise in multiple
+          programming languages and frameworks. Passionate about building
+          efficient, high-performance software solutions.
         </motion.p>
 
         <motion.div
@@ -83,13 +93,22 @@ export default function HeroSection({ name }: HeroSectionProps) {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-6">View My Work</Button>
-          <Button variant="outline" className="border-white/20 hover:bg-white/10 text-lg px-8 py-6">
-            Contact Me <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link href="#experience">
+            <Button className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-6">
+              View My Work
+            </Button>
+          </Link>
+
+          <Link href="#contact">
+            <Button
+              variant="outline"
+              className="border-white/20 hover:bg-white/10 text-lg px-8 py-6"
+            >
+              Contact Me <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </motion.div>
       </div>
-
     </section>
-  )
+  );
 }

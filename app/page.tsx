@@ -26,15 +26,17 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-black/80 backdrop-blur-sm border-b border-white/10">
-        <div className="flex items-center gap-2">
+        <Link
+          href="/"
+          className="flex items-center gap-2 hover:opacity-80 transition"
+        >
           <img
-            src="\103448179.jpg"
+            src="/103448179.jpg"
             alt="User"
             className="h-8 w-8 rounded-sm object-cover"
           />
-
           <span className="font-bold text-lg">Phubet Klubchai</span>
-        </div>
+        </Link>
         <div className="hidden md:flex items-center gap-6">
           {[
             "about",
@@ -132,7 +134,7 @@ export default function Home() {
             <div className="absolute -inset-1 bg-purple-600 rounded-lg opacity-50 blur"></div>
             <div className="relative aspect-square bg-black rounded-lg overflow-hidden border border-white/20">
               <div className="absolute inset-0 grid place-items-center">
-                <img src="\teh.jpg"/>
+                <img src="\teh.jpg" />
               </div>
             </div>
           </div>
