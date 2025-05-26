@@ -169,31 +169,31 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               <SkillCard
                 skill="C#"
-                percentage={85}
+                percentage={45}
                 color="#9B4F96"
                 projects={[
-                  "MFU LCMP Web App",
-                  "Tratavel Backend",
-                  "University Projects",
+                  ".Net REST APIs",
+                  "Backend Services",
+                  "University Assignments",
                 ]}
                 yearsExperience={2}
                 description="Proficient in C# development with experience in .NET framework, building backend services and applications."
               />
               <SkillCard
                 skill="Dart"
-                percentage={90}
+                percentage={35}
                 color="#0175C2"
                 projects={[
                   "Pakurng Mobile App",
                   "Flutter UI Components",
                   "Cross-platform Applications",
                 ]}
-                yearsExperience={2}
+                yearsExperience={1}
                 description="Expert in Dart programming language, primarily used with Flutter for cross-platform mobile application development."
               />
               <SkillCard
                 skill="JavaScript"
-                percentage={90}
+                percentage={60}
                 color="#F7DF1E"
                 projects={[
                   "Tratavel Frontend",
@@ -205,7 +205,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="TypeScript"
-                percentage={85}
+                percentage={55}
                 color="#3178C6"
                 projects={[
                   "Next.js Projects",
@@ -217,7 +217,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="Python"
-                percentage={80}
+                percentage={60}
                 color="#3776AB"
                 projects={[
                   "MFU LCMP Research",
@@ -229,15 +229,23 @@ export default function Home() {
               />
               <SkillCard
                 skill="Rust"
-                percentage={70}
+                percentage={5}
                 color="#FF4500"
-                projects={[
-                  "System Utilities",
-                  "Performance-critical Components",
-                  "Learning Projects",
-                ]}
-                yearsExperience={1}
+                projects={["Rocket REST APIs", "University Assignments"]}
+                yearsExperience={0.2}
                 description="Growing experience with Rust for systems programming, focusing on memory safety and performance."
+              />
+              <SkillCard
+                skill="Java"
+                percentage={30}
+                color="#6DB33F"
+                projects={[
+                  "Spring Boot REST APIs",
+                  "Backend Services",
+                  "University Assignments",
+                ]}
+                yearsExperience={2}
+                description="Strong foundation in Java for building backend systems and enterprise-level applications using Spring Boot and core Java concepts."
               />
             </div>
           </div>
@@ -251,7 +259,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               <SkillCard
                 skill="Vue.js"
-                percentage={85}
+                percentage={50}
                 color="#4FC08D"
                 projects={[
                   "Dashboard Interfaces",
@@ -263,7 +271,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="React.js"
-                percentage={90}
+                percentage={60}
                 color="#61DAFB"
                 projects={[
                   "Tratavel Frontend",
@@ -275,7 +283,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="Next.js"
-                percentage={85}
+                percentage={50}
                 color="#000000"
                 projects={[
                   "MFU LCMP Web App",
@@ -287,7 +295,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="Flutter"
-                percentage={90}
+                percentage={25}
                 color="#02569B"
                 projects={[
                   "Pakurng Mobile App",
@@ -299,7 +307,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="Tailwind CSS"
-                percentage={95}
+                percentage={60}
                 color="#38BDF8"
                 projects={[
                   "Portfolio Website",
@@ -311,7 +319,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="Figma"
-                percentage={85}
+                percentage={70}
                 color="#F24E1E"
                 projects={[
                   "Pakurng UI Design",
@@ -333,55 +341,44 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               <SkillCard
                 skill=".NET (C#)"
-                percentage={85}
+                percentage={30}
                 color="#512BD4"
-                projects={[
-                  "Web APIs",
-                  "Microservices",
-                  "Data Processing Applications",
-                ]}
+                projects={["Web APIs", "Practice Projects"]}
                 yearsExperience={2}
                 description="Experienced in .NET framework for building scalable backend services, APIs, and web applications."
               />
               <SkillCard
                 skill="Express.js"
-                percentage={90}
+                percentage={50}
                 color="#000000"
                 projects={[
                   "Tratavel Backend",
                   "RESTful APIs",
                   "Authentication Systems",
+                  "Practice Projects",
                 ]}
                 yearsExperience={3}
                 description="Proficient in Express.js for building fast, minimalist web servers and APIs with Node.js."
               />
               <SkillCard
                 skill="NestJS"
-                percentage={85}
+                percentage={35}
                 color="#E0234E"
-                projects={[
-                  "Structured APIs",
-                  "Microservices",
-                  "Enterprise Applications",
-                ]}
+                projects={["Practice Projects"]}
                 yearsExperience={2}
                 description="Skilled in NestJS for building efficient, reliable, and scalable server-side applications with TypeScript."
               />
               <SkillCard
                 skill="Django"
-                percentage={80}
+                percentage={10}
                 color="#092E20"
-                projects={[
-                  "Content Management Systems",
-                  "Data-driven Applications",
-                  "Admin Interfaces",
-                ]}
+                projects={["Practice Projects"]}
                 yearsExperience={2}
                 description="Experienced with Django for rapid development of secure and maintainable web applications with Python."
               />
               <SkillCard
                 skill="MongoDB"
-                percentage={85}
+                percentage={30}
                 color="#47A248"
                 projects={[
                   "NoSQL Databases",
@@ -393,7 +390,7 @@ export default function Home() {
               />
               <SkillCard
                 skill="MySQL"
-                percentage={80}
+                percentage={40}
                 color="#4479A1"
                 projects={[
                   "Relational Databases",
@@ -420,10 +417,21 @@ export default function Home() {
         </AnimatedText>
         <div className="space-y-8 max-w-4xl mx-auto">
           <ExperienceCard
+            title="Software Tester & QA (Summer Intern)"
+            company="Summit Computer"
+            period="June 2025 – August 2025 (now)"
+            responsibilities={[
+              "Executed manual test cases to identify bugs and ensure software functionality met requirements.",
+              "Collaborated with developers to report and verify fixes using bug-tracking tools.",
+              "Participated in regression and smoke testing for web-based applications.",
+              "Wrote test reports and assisted in developing test plans for new feature releases.",
+            ]}
+          />
+
+          <ExperienceCard
             title="Developer & Data Scientist (MFU LCMP)"
             company="Mae Fah Luang University"
             period="March 2025 - Present"
-            duration="1 month"
             responsibilities={[
               "Conducted deep learning research on land cover mapping, identifying urban structures in Chiang Rai province, Thailand.",
               "Developed and trained high-resolution datasets using EfficientNet in Python for improved land cover classification.",
@@ -434,7 +442,6 @@ export default function Home() {
             title="UX/UI Designer & Android Developer (Flutter/Dart)"
             company="Mae Fah Luang University"
             period="August 2024 - December 2024"
-            duration="4 months"
             responsibilities={[
               "Designed and developed Pakurng, an e-commerce mobile application for buying and selling amulets in Thailand.",
               "Led UX/UI design, ensuring an intuitive user experience and seamless navigation.",
@@ -445,7 +452,6 @@ export default function Home() {
             title="Full-Stack Developer"
             company="Mae Fah Luang University"
             period="January 2024 - May 2024"
-            duration="4 months"
             responsibilities={[
               "Developed Tratavel, a web application for travelers to find hostels, book accommodations, and explore festivals.",
               "Implemented the frontend using React.js and backend using Express.js, ensuring a responsive and efficient user experience.",
@@ -456,7 +462,6 @@ export default function Home() {
             title="UX/UI Designer"
             company="Mae Fah Luang University"
             period="August 2023 - December 2023"
-            duration="4 months"
             responsibilities={[
               "Designed the Kinraidee (กินไรดี) web application, a restaurant review and location discovery platform for students at Mae Fah Luang University.",
               "Focused on user-centric design, improving accessibility and ease of navigation.",

@@ -7,7 +7,7 @@ interface ExperienceCardProps {
   title: string
   company: string
   period: string
-  duration: string
+  duration?: string
   responsibilities: string[]
 }
 
@@ -25,7 +25,7 @@ export default function ExperienceCard({ title, company, period, duration, respo
         <div className="flex items-center text-gray-400 mt-2 md:mt-0">
           <Calendar className="h-4 w-4 mr-1" />
           <span>{period}</span>
-          <span className="mx-2">•</span>
+
           <span>{duration}</span>
         </div>
       </div>

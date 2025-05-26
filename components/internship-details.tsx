@@ -54,7 +54,7 @@ export default function InternshipDetails() {
           Internship Period
         </h3>
         <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-          <span className="text-lg font-medium">May 19, 2025 - July 30, 2025</span>
+          <span className="text-lg font-medium">January 10, 2026 - May 31, 2026</span>
           <p className="text-gray-400 mt-2">General Internship Format</p>
         </div>
       </motion.div>
@@ -73,6 +73,9 @@ export default function InternshipDetails() {
           </div>
           <div className="bg-white/5 rounded-lg p-4 border border-white/10">
             <span className="text-lg font-medium">Chonburi</span>
+          </div>
+          <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+            <span className="text-lg font-medium">Chiang Mai</span>
           </div>
         </div>
       </motion.div>
