@@ -27,7 +27,12 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-black/80 backdrop-blur-sm border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 bg-purple-600 rounded-sm"></div>
+          <img
+            src="\103448179.jpg"
+            alt="User"
+            className="h-8 w-8 rounded-sm object-cover"
+          />
+
           <span className="font-bold text-lg">Phubet Klubchai</span>
         </div>
         <div className="hidden md:flex items-center gap-6">
@@ -124,10 +129,10 @@ export default function Home() {
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-1 bg-purple-600 rounded-lg opacity-75 blur"></div>
+            <div className="absolute -inset-1 bg-purple-600 rounded-lg opacity-50 blur"></div>
             <div className="relative aspect-square bg-black rounded-lg overflow-hidden border border-white/20">
               <div className="absolute inset-0 grid place-items-center">
-                <span className="text-xl font-bold">Your Photo Here</span>
+                <img src="\teh.jpg"/>
               </div>
             </div>
           </div>
